@@ -1,0 +1,11 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteRule ^$ ./index.php
+RewriteRule ^add$ ./add.php
+RewriteRule ^search$ ./search.php
+RewriteRule ^post/(.*)$ ./post.php?slug=$1
+RewriteRule ^category/(.*)$ ./category.php?slug=$1
+RewriteRule ^edit/(.*)$ ./edit.php?slug=$1
+
+ErrorDocument 404 /error.php

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <form method="post">
+      <div class="form-group row">
+        <label for="title" class="col-2 col-form-label">Title</label>
+        <div class="col-10">
+        <input type="text" name="title" id="title" class="form-control" placeholder="Title" value="{% if results %}{{ results.post_title }} {% endif %}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="slug" class="col-2 col-form-label">Slug</label>
+        <div class="col-10">
+        <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug" value="{% if results %}{{ results.post_slug }}{% endif %}" required>
+        </div>
+      </div>
+      <div class="form-group row">
+          <label for="category" class="col-2 col-form-label">Category</label>
+        <div class="col-10">
+          <select name="category" id="category" class="form-control" required>
+
+            <option>Select a Category</option>
+            {% for category in categories %}
+              <option value="{{ category.category_id }}"
+                {% if results and category.category_id == results.category_id %}
+                  selected
+                {% endif %}
+              >{{ category.category_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="excerpt" class="col-2 col-form-label">Excerpt</label>
+        <div class="col-10">
+        <textarea name="excerpt" id="excerpt" class="form-control" rows="8" cols="80" required>{% if results %}{{ results.post_excerpt|raw }}{% endif %}</textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="body" class="col-2 col-form-label">Body</label>
+        <div class="col-10">
+        <textarea name="body" id="body" class="form-control" rows="8" cols="80" required>{% if results %}{{ results.post_body|raw }}{% endif %}</textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary float-right" name="submit" value="{{ page.button }}">
+      </div>
+    </form>
+  </div>
+{% endblock %}

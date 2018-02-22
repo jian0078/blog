@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row my-4">
+            <h3 class="mx-auto text-primary">{{ page.title }}</h3>
+        </div>
+        <div class="row">
+            <a href="{{ SITE_URL }}/add" class="w-100 text-right">
+                <button class="btn btn-primary">Add Blog</button>
+            </a>
+        </div>
+
+        {% for result in results %}
+            <div class="row my-2">
+                <div class="col-8 offset-2">
+                    <a href="{{ SITE_URL }}/post/{{ result.slug }}">
+                        <b>{{ result.title }}</b>
+                    </a>
+                </div>
+                <div class="col-8 offset-2">
+                    <small class="text-muted">{{ result.date|date("Y/m/d") }}</small>
+                </div>
+                <div class="col-8 offset-2 border-bt-grey">
+                    {{ result.excerpt|raw }}
+                </div>
+            </div>
+        {% endfor%}
+
+    </div>
+{% endblock %}
